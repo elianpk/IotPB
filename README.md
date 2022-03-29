@@ -1,35 +1,34 @@
-# IotPB
-IoT Infnet Project
+# Room Temperature IOT
 
-## Rodar o Projeto
+## Run
 ``` cmd
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 jupyter notebook
 ```
-## Estrutura das pastas
+## Folder Structure 
 ``` cmd
-IOTPB.
+room-temperature.
 |   
 |   
 +---Code
 |   |   README.md
 |   |   
 |   \---DataPrep
-|       |   PreprocessamentoPB.ipynb
+|       |   preprocess.ipynb
 |       |
 |       \---.ipynb_checkpoints
-|               PreprocessamentoPB-checkpoint.ipynb
+|               preprocess-checkpoint.ipynb
 |
 +---Data
 |   |   README.md
 |   |
 |   +---Processed
-|   |       japanese_room_temp_prepdata.csv
+|   |       room_temp_prepdata.csv
 |   |
 |   \---Raw
-|           japanese_room_temp_rawdata.csv
+|           room_temp_rawdata.csv
 |
 \---Docs
         README.md
