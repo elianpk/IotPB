@@ -1,16 +1,15 @@
-# IotPB
-IoT Infnet Project
+# Room Temperature IOT
 
-## Rodar o Projeto
+## Run
 ``` cmd
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 jupyter notebook
 ```
-## Estrutura das pastas
+## Folder Structure 
 ``` cmd
-IOTPB.
+room-temperature.
 |   
 |   
 +---Code
