@@ -30,7 +30,7 @@ class Aws():
         
         return self.mqtt_connection, self.connection_feature
 
-    def publish(self, message="", t=1):
+    def publish(self, message="", t=2):
         print(f"Sending Message {message}")
         self.mqtt_connection.publish(
             topic=self.settings["TOPIC"],
@@ -39,5 +39,8 @@ class Aws():
         )
         print(F"Message Send")
         time.sleep(t)
+        
+
+    def disconnect(self):
         disconnect_future = self.mqtt_connection.disconnect()
         disconnect_future.result()

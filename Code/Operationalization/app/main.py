@@ -4,21 +4,20 @@ import time
 from settings import get_enviroment_variables
 from aws import Aws
 
-name = "shadow"
+name = "elian"
 
 def csv():
     import csv
-    file = open("../../Data/Raw/japanese_room_temp_rawdata.csv")
+    file = open("../../Data/Raw/room_temp_rawdata.csv")
     reader = csv.reader(file)
+    aws = Aws(get_enviroment_variables(name)) 
     for row in reader:
         print(row)
+        aws.publish(row, 1)
     file.close()
+    aws.disconnect()
 
 def main():
-    aws = Aws(get_enviroment_variables(name)) 
-    message = {"temperatura": 25.00}
-    aws.publish(message, 1)
-
     csv()
 
 
