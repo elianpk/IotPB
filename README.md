@@ -17,19 +17,19 @@ IOTPB.
 |   |   README.md
 |   |   
 |   \---DataPrep
-|       |   PreprocessamentoPB.ipynb
+|       |   preprocess.ipynb
 |       |
 |       \---.ipynb_checkpoints
-|               PreprocessamentoPB-checkpoint.ipynb
+|               preprocess-checkpoint.ipynb
 |
 +---Data
 |   |   README.md
 |   |
 |   +---Processed
-|   |       japanese_room_temp_prepdata.csv
+|   |       room_temp_prepdata.csv
 |   |
 |   \---Raw
-|           japanese_room_temp_rawdata.csv
+|           room_temp_rawdata.csv
 |
 \---Docs
         README.md
