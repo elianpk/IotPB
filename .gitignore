@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#AWS and Cloud9
+aws-iot-device-sdk-python
+
 # Certificado
 ./Code/Operationalization/certificates
