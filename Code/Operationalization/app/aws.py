@@ -40,6 +40,16 @@ class Aws():
         print(F"Message Send")
         time.sleep(t)
         
+    def device_shadow_publish(self, message="", t=2):
+        print(f"Sending Message {message}")
+        self.mqtt_connection.publish(
+            topic="$aws/things/room/shadow/update/delta",
+            payload=json.dumps(message),
+            qos=mqtt.QoS.AT_LEAST_ONCE
+        )
+        print(F"Message Send")
+        time.sleep(t)
+        
 
     def disconnect(self):
         disconnect_future = self.mqtt_connection.disconnect()

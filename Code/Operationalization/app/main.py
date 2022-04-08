@@ -26,15 +26,15 @@ def csv():
 
 
 def air_conditioner_actuator(aws, temperature):
-    state = {
+    message = {
           "state": {
             "desired": {
-              "power": True # True if temperature >= 21 else False
+              "power": True if temperature >= 21 else False
             }
           }
         }
         
-    aws.publish(state, 1)
+    aws.device_shadow_publish(message, 1)
 
 
 def main():

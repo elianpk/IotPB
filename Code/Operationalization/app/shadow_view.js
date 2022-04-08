@@ -29,8 +29,8 @@ const initialState = {
     state: { 
         reported: { 
             power: false
-        }, 
-        desired: null 
+        },
+        desired: null
     }
 };
 
@@ -87,7 +87,6 @@ thingShadows.on('status', function(thingName, statusType, clientToken, stateObje
     // If the clientToken is for our initial Get request and the status is rejected
     //  this means that the Thing Shadow has been deleted. We need to set the state to defaults
     if (initialGetClientToken === clientToken && statusType === 'rejected') {
-        
         setDefaultState();
     }
     
