@@ -20,34 +20,28 @@ const awsIoT = require('aws-iot-device-sdk');
 
 // Fetch the thingName from the folder name
 const thingName = "room";
+const conta = "elian"
 
 // Initial Get Client Token
 let initialGetClientToken;
 
-// Initial state of car
+// Initial state of power
 const initialState = {
     state: { 
         reported: { 
             power: true
         },
+        desired: null 
     }
 };
 
-// Create the thingShadow object with argument data
-// const thingShadows = awsIoT.thingShadow({
-//   keyPath: '.certificates/shadow/air_conditioner/air-conditioner.private.key', 
-//   certPath: '.certificates/shadow/air_conditioner/air-conditioner.cert.pem',
-//     caPath: '.certificates/shadow/air_conditioner/air-conditioner-CA.crt',
-//   clientId: thingName,
-//       host: "a1apbqincnemcr-ats.iot.us-east-1.amazonaws.com"
-// });
 
 const thingShadows = awsIoT.thingShadow({
-   keyPath: './certificates/shadow/room.private.key',
-  certPath: './certificates/shadow/room.cert.pem',
-    caPath: './certificates/shadow/root-CA.crt',
+   keyPath: `./certificates/${conta}/room.private.key`,
+  certPath: `./certificates/${conta}/room.cert.pem`,
+    caPath: `./certificates/${conta}/root-CA.crt`,
   clientId: thingName,
-      host: "a1apbqincnemcr-ats.iot.us-east-1.amazonaws.com"
+      host: "arx4clmj8o6k9-ats.iot.us-east-1.amazonaws.com"
 });
 
 // Register/Subscribe to the thingShadow topic
@@ -63,12 +57,13 @@ thingShadows.on('delta', function(thingName, stateObject) {
 
     // If the power attribute was modified, call the outputPowerState function
     if (!isUndefined(stateObject.state.power)) {
+        console.log('Reporting my new state.');
         outputPowerState(stateObject.state.power);
     }
     
     // Report to the Shadow the new state
-    console.log('Reporting my new state.');
-    thingShadows.update(thingName, { state: { reported: stateObject.state } } );
+    // console.log('Reporting my new state.');
+    thingShadows.update(thingName, { state: { reported: stateObject.state , desired: null  } } );
 });
 
 
@@ -129,6 +124,7 @@ thingShadows.on('status', function(thingName, statusType, clientToken, stateObje
             } else {
                 
                 // Else, we need to set the state to defaults
+                console.log('Setting default state');
                 setDefaultState();
             }
         }

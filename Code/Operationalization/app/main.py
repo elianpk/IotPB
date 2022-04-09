@@ -1,17 +1,14 @@
-import json
-import time
-
 from settings import get_enviroment_variables
 from aws import Aws
-from aws_shadow import Aws_Shadow
+from shadow_control import air_conditioner_actuator
 
-name = "shadow"
+name = "elian"
 
 def csv():
     import csv
     file = open("../../Data/Raw/room_temp_rawdata.csv")
     reader = csv.reader(file)
-    aws = Aws_Shadow(get_enviroment_variables(name)) 
+    aws = Aws(get_enviroment_variables(name))
     next(reader)
     for row in reader:
         print(row)
@@ -21,19 +18,14 @@ def csv():
             'Relative_Humidity':float(row[2])
         }
         #aws.publish(room, 1)
-        air_conditioner_actuator(aws, float(row[1]))
+        if float(row[1]) >= 21:
+            air_conditioner_actuator('on')
+        else:
+            air_conditioner_actuator('off')
+
     file.close()
     aws.disconnect()
 
-
-def air_conditioner_actuator(aws, temperature):
-    message = {
-          "state": {
-              "power": True if temperature >= 21 else False
-          }
-        }
-        
-    aws.publish(message, 1)
 
 
 def main():
