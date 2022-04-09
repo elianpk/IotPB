@@ -11,6 +11,9 @@ def get_enviroment_variables(name):
     env["PATH_TO_CERTIFICATE"] = f"./certificates/{name}/room.cert.pem"
     env["PATH_TO_PRIVATE_KEY"] = f"./certificates/{name}/room.private.key"
     env["PATH_TO_AMAZON_ROOT_CA_1"] = f"./certificates/{name}/root-CA.crt"
+    env["PATH_TO_CERTIFICATE_SHADOW"] = f"./certificates/{name}/air_conditioner/air-conditioner.cert.pem"
+    env["PATH_TO_PRIVATE_KEY_SHADOW"] = f"./certificates/{name}/air_conditioner/air-conditioner.private.key"
+    env["PATH_TO_AMAZON_ROOT_CA_1_SHADOW"] = f"./certificates/{name}/air_conditioner/air-conditioner-CA.crt"
     env["TOPIC"] = "room/telemetry"
     
     return env

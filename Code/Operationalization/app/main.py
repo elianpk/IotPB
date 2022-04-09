@@ -3,6 +3,7 @@ import time
 
 from settings import get_enviroment_variables
 from aws import Aws
+from aws_shadow import Aws_Shadow
 
 name = "shadow"
 
@@ -10,7 +11,7 @@ def csv():
     import csv
     file = open("../../Data/Raw/room_temp_rawdata.csv")
     reader = csv.reader(file)
-    aws = Aws(get_enviroment_variables(name)) 
+    aws = Aws_Shadow(get_enviroment_variables(name)) 
     next(reader)
     for row in reader:
         print(row)
@@ -19,7 +20,7 @@ def csv():
             'Temperature_Celsius': float(row[1]),
             'Relative_Humidity':float(row[2])
         }
-        #aws.publish(room, 1)
+        aws.publish(room, 1)
         air_conditioner_actuator(aws, float(row[1]))
     file.close()
     aws.disconnect()
@@ -28,13 +29,13 @@ def csv():
 def air_conditioner_actuator(aws, temperature):
     message = {
           "state": {
-            "desired": {
+            "reported": {
               "power": True if temperature >= 21 else False
             }
           }
         }
         
-    aws.device_shadow_publish(message, 1)
+    aws.publish(message, 1)
 
 
 def main():

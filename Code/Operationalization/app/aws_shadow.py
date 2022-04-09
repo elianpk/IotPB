@@ -3,7 +3,7 @@ import time
 from awscrt import io, mqtt, auth, http
 from awsiot import mqtt_connection_builder 
 
-class Aws():
+class Aws_Shadow():
 
     def __init__(self, settings):
         self.settings = settings
@@ -20,7 +20,7 @@ class Aws():
             pri_key_filepath = self.settings["PATH_TO_PRIVATE_KEY"],
             ca_filepath = self.settings["PATH_TO_AMAZON_ROOT_CA_1"],
             client_bootstrap = client_bootstrap,
-            client_id = self.settings["CLIENT_ID"],
+            client_id = "air_conditioner",
             clean_session = False,
             keep_alive_secs = 6
         )
@@ -33,7 +33,7 @@ class Aws():
     def publish(self, message="", t=2):
         print(f"Sending Message {message}")
         self.mqtt_connection.publish(
-            topic=self.settings["TOPIC"],
+            topic="$aws/things/room/shadow/update/delta",
             payload=json.dumps(message),
             qos=mqtt.QoS.AT_LEAST_ONCE
         )
