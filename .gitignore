@@ -133,3 +133,6 @@ aws-iot-device-sdk-python
 
 # Certificado
 ./Code/Operationalization/certificates
+
+#Node 
+node_modules
