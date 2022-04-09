@@ -33,19 +33,48 @@ python ./app/shadow_control.py off
 ## Folder Structure 
 ``` cmd
 room-temperature.
-|   
-|   
+|   .gitignore
+|   package-lock.json
+|   package.json
+|   README.md
+|   requirements.txt
+|   TDSP
+|   TDSP.png
+|
 +---Code
 |   |   README.md
-|   |   
-|   \---DataPrep
-|       |   preprocess.ipynb
+|   |
+|   +---DataPrep
+|   |       csv_file.csv
+|   |       generator.py
+|   |       preprocess.ipynb
+|   |
+|   \---Operationalization
+|       +---app
+|       |       aws.py
+|       |       main.py
+|       |       settings.py
+|       |       shadow_control.py
+|       |       shadow_view.js
 |       |
-|       \---.ipynb_checkpoints
-|               preprocess-checkpoint.ipynb
+|       \---certificates
+|           +---elian
+|           |       room.cert.pem
+|           |       room.private.key
+|           |       room.public.key
+|           |       root-CA.crt
+|           |
+|           \---shadow
+|                   room.cert.pem
+|                   room.private.key
+|                   room.public.key
+|                   root-CA.crt
 |
 +---Data
 |   |   README.md
+|   |
+|   +---Modeling
+|   |       SensorData.csv
 |   |
 |   +---Processed
 |   |       room_temp_prepdata.csv
@@ -54,5 +83,11 @@ room-temperature.
 |           room_temp_rawdata.csv
 |
 \---Docs
-        README.md
+    |   README.md
+    |
+    +---DataReport
+    |       data-dictionary.ipynb
+    |
+    \---Project
+            Charter.ipynb
 ```
