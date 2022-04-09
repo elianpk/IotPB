@@ -30,7 +30,6 @@ const initialState = {
         reported: { 
             power: true
         },
-        desired: null
     }
 };
 
@@ -70,7 +69,6 @@ thingShadows.on('delta', function(thingName, stateObject) {
     // Report to the Shadow the new state
     console.log('Reporting my new state.');
     thingShadows.update(thingName, { state: { reported: stateObject.state } } );
-    outputPowerState(stateObject.state.reported.power)
 });
 
 

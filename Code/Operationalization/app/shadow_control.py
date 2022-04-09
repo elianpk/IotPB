@@ -4,9 +4,7 @@ from settings import get_enviroment_variables
 def air_conditioner_actuator(aws, temperature):
     message = {
           "state": {
-            "reported": {
               "power": True if temperature >= 21 else False
-            }
           }
         }
         
@@ -14,4 +12,4 @@ def air_conditioner_actuator(aws, temperature):
     aws.disconnect()
 
 aws = Aws(get_enviroment_variables("shadow")) 
-air_conditioner_actuator(aws, 18)
+air_conditioner_actuator(aws, 21)

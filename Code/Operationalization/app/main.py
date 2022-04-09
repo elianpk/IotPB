@@ -20,7 +20,7 @@ def csv():
             'Temperature_Celsius': float(row[1]),
             'Relative_Humidity':float(row[2])
         }
-        aws.publish(room, 1)
+        #aws.publish(room, 1)
         air_conditioner_actuator(aws, float(row[1]))
     file.close()
     aws.disconnect()
@@ -29,9 +29,7 @@ def csv():
 def air_conditioner_actuator(aws, temperature):
     message = {
           "state": {
-            "reported": {
               "power": True if temperature >= 21 else False
-            }
           }
         }
         
